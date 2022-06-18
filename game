@@ -45,7 +45,7 @@ class Menu:
         self.pos_x, self.pos_y, self.board_cur_x, self.board_cur_y, self.last_word, self.lay_out_letters_doubler = 55, 55, 385 - 10, 385 - 3.2, None, None
         self.finding_word, self.finded_words, self.finded_words_scores = None, [], []
 
-        pygame.mouse.set_visible(False)
+        pygame.mouse.set_visible(False) 
 
         self.back = pygame.image.load('jpg/image/single back arrow.png').convert_alpha()
         self.back_active = pygame.image.load('jpg/active image/back arrow active.png').convert_alpha()
