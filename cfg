@@ -23,3 +23,4 @@ class SaveSettings:
 
     def __del__(self):
         self.file_cfg.close()
+        
