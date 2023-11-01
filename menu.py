@@ -3151,7 +3151,7 @@ class FinishPage(Menu):
         if self.game.start_b or self.game.space_b:
             if self.title == 'go menu':
                 self.save_achivement()
-                self.game.save_settings.save()
+                #self.game.save_settings.save()
                 self.game.back_menu_effect.play()
                 self.game.curr_menu = self.game.main_menu
             self.go_display = False
@@ -3420,7 +3420,7 @@ class OtherSettings(Menu):
                     self.game.volume_music -= 0.1
                     self.game.volume_pin1_w -= 17.7
                     pygame.mixer.music.set_volume(self.game.volume_music)
-                    self.game.save_settings.save()
+                    #self.game.save_settings.save()
             if self.title == 'volume effects':
                 if self.game.volume_effects > 0 and self.game.volume_pin2_w > 0:
                     self.game.accept_setting.play()
@@ -3434,7 +3434,7 @@ class OtherSettings(Menu):
                     self.game.paper_sound_var1.set_volume(self.game.volume_effects)
                     self.game.paper_sound_var2.set_volume(self.game.volume_effects)
                     self.game.paper_sound_var3.set_volume(self.game.volume_effects)
-                    self.game.save_settings.save()
+                    #self.game.save_settings.save()
         if self.game.arrow_right:
             if self.title == 'volume music':
                 if self.game.volume_music < 1 and not self.game.volume_music > 1:
@@ -3456,7 +3456,7 @@ class OtherSettings(Menu):
                     self.game.paper_sound_var1.set_volume(self.game.volume_effects)
                     self.game.paper_sound_var2.set_volume(self.game.volume_effects)
                     self.game.paper_sound_var3.set_volume(self.game.volume_effects)
-                    self.game.save_settings.save()
+                    #self.game.save_settings.save()
         if self.game.esc_b:
             self.game.back_menu_effect.play()
             self.game.save_settings.save()
