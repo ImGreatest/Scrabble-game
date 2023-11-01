@@ -11,5 +11,5 @@ def load_settings():
 
 
 while game.running:
-    load_settings()
+    #load_settings()
     game.curr_menu.draw_menu()
