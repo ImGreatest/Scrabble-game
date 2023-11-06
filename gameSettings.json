@@ -1,3 +1,11 @@
 {
-  "maxScore": 0
+  "maxScore": 0,
+  "widthScreen": 1920,
+  "heightScreen": 1080,
+  "language": "en",
+  "musicStatus": true,
+  "musicName": "Start music.mp3",
+  "musicVolume": 100,
+  "effectsVolume": 100,
+  "mouseVisible": false
 }
