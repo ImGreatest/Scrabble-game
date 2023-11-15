@@ -19,19 +19,6 @@ class Menu:
 
         pygame.mouse.set_visible(True)
 
-        self.back = pygame.image.load('assets/jpg/image/single back arrow.png').convert_alpha()
-        self.back_active = pygame.image.load('assets/jpg/active image/back arrow active.png').convert_alpha()
-        self.next = pygame.image.load('assets/jpg/image/single next arrow.png').convert_alpha()
-        self.up_menu = pygame.image.load('assets/jpg/image/single arrow.png').convert_alpha()
-        self.next_active = pygame.image.load('assets/jpg/active image/next arrow active.png').convert_alpha()
-        self.up_menu_active = pygame.image.load('assets/jpg/active image/arrow active.png').convert_alpha()
-        self.back = pygame.transform.scale(self.back, (70, 70))
-        self.next = pygame.transform.scale(self.next, (100, 100))
-        self.back_active = pygame.transform.scale(self.back_active, (70, 70))
-        self.up_menu = pygame.transform.scale(self.up_menu, (100, 100))
-        self.up_menu_active = pygame.transform.scale(self.up_menu_active, (100, 100))
-        self.next_active = pygame.transform.scale(self.next_active, (100, 100))
-
     def go_cursor(self):
         self.game.draw_text('*', 17, self.cursor_rect.x, self.cursor_rect.y)
 
@@ -81,7 +68,7 @@ class SplashScreenPage(Menu):
 
     def action_movement(self):
         if self.controller.return_button or self.controller.space_button:
-            self.game.start_effect.play()
+            
             self.game.curr_menu = self.game.main_menu
             self.go_display = False
         if self.controller.delete_button:
@@ -94,53 +81,18 @@ class MainMenu(Menu):
         Menu.__init__(self, game, event, keyboard)
         self.title = "Start"
         self.cursor_rect.midtop = (self.middle_w + (- 100), self.middle_h)
-        self.arrow = pygame.image.load('assets/jpg/image/single arrow.png').convert_alpha()
-        self.gear = pygame.image.load('assets/jpg/image/single gear.png').convert_alpha()
-        self.info = pygame.image.load('assets/jpg/image/single info.png').convert_alpha()
-        self.cup = pygame.image.load('assets/jpg/image/single cup.png').convert_alpha()
-        self.arrow_active = pygame.image.load('assets/jpg/active image/arrow active.png').convert_alpha()
-        self.gear_active = pygame.image.load('assets/jpg/active image/gear active.png').convert_alpha()
-        self.info_active = pygame.image.load('assets/jpg/active image/info active.png').convert_alpha()
-        self.cup_active = pygame.image.load('assets/jpg/active image/cup active.png').convert_alpha()
-        self.arrow = pygame.transform.scale(self.arrow, (60, 60))
-        self.gear = pygame.transform.scale(self.gear, (50, 50))
-        self.info = pygame.transform.scale(self.info, (40, 40))
-        self.cup = pygame.transform.scale(self.cup, (40, 40))
-        self.arrow_active = pygame.transform.scale(self.arrow_active, (60, 60))
-        self.gear_active = pygame.transform.scale(self.gear_active, (50, 50))
-        self.info_active = pygame.transform.scale(self.info_active, (40, 40))
-        self.cup_active = pygame.transform.scale(self.cup_active, (40, 40))
 
     def draw_menu(self):
         self.go_display = True
         while self.go_display:
             self.controller.movement(False)
-            self.check_movement()
+            # self.check_movement()
             self.game.display.fill(self.game.black)
-            if self.game.language == 'en':
-                self.game.draw_text('Main Menu', self.game.font_size_Upper, self.label_rules_x, self.label_rules_y)
-                self.game.draw_text("Start", self.game.font_size, self.middle_w + 20, self.middle_h)
-                self.game.draw_text("Settings", self.game.font_size, self.middle_w + 20, self.middle_h + 40)
-                self.game.draw_text("Rules", self.game.font_size, self.middle_w + 20, self.middle_h + 80)
-                self.game.draw_text("Records", self.game.font_size, self.middle_w + 20, self.middle_h + 120)
-            else:
-                self.game.draw_text('Главное меню', self.game.font_size_Upper, self.label_rules_x, self.label_rules_y)
-                self.game.draw_text("Старт", self.game.font_size, self.middle_w + 20, self.middle_h)
-                self.game.draw_text("Настройки", self.game.font_size, self.middle_w + 20, self.middle_h + 40)
-                self.game.draw_text("Правила", self.game.font_size, self.middle_w + 20, self.middle_h + 80)
-                self.game.draw_text("Рекорды", self.game.font_size, self.middle_w + 20, self.middle_h + 120)
-            self.game.display.blit(self.arrow, (self.middle_w - 105, self.middle_h - 30))
-            self.game.display.blit(self.gear, (self.middle_w - 100, self.middle_h + 15))
-            self.game.display.blit(self.info, (self.middle_w - 95, self.middle_h + 60))
-            self.game.display.blit(self.cup, (self.middle_w - 95, self.middle_h + 100))
-            if self.title == 'Start':
-                self.game.display.blit(self.arrow_active, (self.middle_w - 105, self.middle_h - 30))
-            elif self.title == 'Settings':
-                self.game.display.blit(self.gear_active, (self.middle_w - 100, self.middle_h + 15))
-            elif self.title == 'Rules':
-                self.game.display.blit(self.info_active, (self.middle_w - 95, self.middle_h + 60))
-            else:
-                self.game.display.blit(self.cup_active, (self.middle_w - 95, self.middle_h + 100))
+            self.game.draw_text('Main Menu', self.game.font_size_Upper, self.label_rules_x, self.label_rules_y)
+            self.game.draw_text("Start", self.game.font_size, self.middle_w + 20, self.middle_h)
+            self.game.draw_text("Settings", self.game.font_size, self.middle_w + 20, self.middle_h + 40)
+            self.game.draw_text("Rules", self.game.font_size, self.middle_w + 20, self.middle_h + 80)
+            self.game.draw_text("Records", self.game.font_size, self.middle_w + 20, self.middle_h + 120)
             self.go_cursor()
             self.b_screen()
 
@@ -180,7 +132,7 @@ class MainMenu(Menu):
         if self.game.start_b or self.game.space_b:
             if self.title == 'Start':
                 self.game.random_letter(7)
-                #self.game.curr_menu = self.game.start
+                # self.game.curr_menu = self.game.start
             elif self.title == 'Settings':
                 self.game.curr_menu = self.game.settings
             elif self.title == 'Rules':
@@ -191,47 +143,6 @@ class MainMenu(Menu):
             self.go_display = False
         if self.game.exit_b:
             self.exit_status()
-
-
-
-class FinishPage(Menu):
-    def __init__(self, game):
-        Menu.__init__(self, game)
-        self.title = 'go menu'
-        self.cursor_rect.midtop = (self.middle_b_x + (- 125), self.middle_b_y)
-        self.back_arrow = pygame.image.load('assets/jpg/active image/back arrow active.png').convert_alpha()
-        self.back_arrow = pygame.transform.scale(self.back_arrow, (60, 60))
-
-    def draw_menu(self):
-        self.go_display = True
-        while self.go_display:
-            self.game.movement_button()
-            self.check_movement()
-            self.game.display.fill(self.game.black)
-            if self.game.language == 'en':
-                self.game.draw_text('go menu', self.game.font_size, self.middle_b_x, self.middle_b_y)
-                self.game.draw_text('points earned ' + f'{self.game.score}', self.game.font_size, self.middle_w, self.middle_h)
-            else:
-                self.game.draw_text('в главное меню', self.game.font_size, self.middle_b_x, self.middle_b_y)
-                self.game.draw_text('заработано очков ' + f'{self.game.score}', self.game.font_size, self.middle_w, self.middle_h)
-            self.game.display.blit(self.back_arrow, (self.middle_b_x - 115, self.middle_b_y - 30))
-            self.go_cursor()
-            self.b_screen()
-
-    def check_movement(self):
-        if self.game.esc_b:
-            self.game.back_menu_effect.play()
-            self.game.curr_menu = self.game.main_menu
-            self.game.save_settings.save()
-            self.go_display = False
-
-        if self.game.start_b or self.game.space_b:
-            if self.title == 'go menu':
-                self.save_achivement()
-                #self.Game.save_settings.save()
-                self.game.back_menu_effect.play()
-                self.game.curr_menu = self.game.main_menu
-            self.go_display = False
 
 
 # Page settings
@@ -270,12 +181,6 @@ class SettingsMenu(Menu):
                 self.game.draw_text("other", self.game.font_size, self.middle_w, self.middle_h + 40)
                 self.game.draw_text('back', self.game.font_size, self.middle_w, self.middle_h + 80)
                 self.game.draw_text("exit", self.game.font_size, self.middle_w, self.middle_h + 120)
-            else:
-                self.game.draw_text("Меню настроек", self.game.font_size_Upper, self.label_rules_x, self.label_rules_y)
-                self.game.draw_text("музыка", self.game.font_size, self.middle_w, self.middle_h)
-                self.game.draw_text("другие", self.game.font_size, self.middle_w, self.middle_h + 40)
-                self.game.draw_text("назад", self.game.font_size, self.middle_w, self.middle_h + 80)
-                self.game.draw_text("выход", self.game.font_size, self.middle_w, self.middle_h + 120)
             self.game.display.blit(self.i_music, (self.middle_w - 95, self.middle_h - 20))
             self.game.display.blit(self.i_o_s, (self.middle_w - 95, self.middle_h + 20))
             self.game.display.blit(self.i_back, (self.middle_w - 100, self.middle_h + 50))
@@ -394,12 +299,6 @@ class OtherSettings(Menu):
                 self.game.draw_text('volume effects', self.game.font_size, self.middle_w, self.middle_h - 50)
                 self.game.draw_text('language en', self.game.font_size, self.middle_w, self.middle_h + 50)
                 self.game.draw_text('back', self.game.font_size, self.middle_w, self.middle_h + 100)
-            else:
-                self.game.draw_text('Другие настройки', self.game.font_size_Upper, self.label_rules_x, self.label_rules_y)
-                self.game.draw_text('музыка', self.game.font_size, self.middle_w, self.middle_h - 150)
-                self.game.draw_text('эффекты', self.game.font_size, self.middle_w, self.middle_h - 50)
-                self.game.draw_text('язык ру', self.game.font_size, self.middle_w, self.middle_h + 50)
-                self.game.draw_text('назад', self.game.font_size, self.middle_w, self.middle_h + 100)
             self.game.display.blit(self.volume_line, (self.middle_w - 130, self.middle_h - 185))
             self.game.display.blit(self.volume_pin, (self.game.volume_pin1_w, self.game.volume_pin1_h))
             self.game.display.blit(self.volume_line, (self.middle_w - 130, self.middle_h - 90))
@@ -501,7 +400,7 @@ class OtherSettings(Menu):
                     self.game.volume_music -= 0.1
                     self.game.volume_pin1_w -= 17.7
                     pygame.mixer.music.set_volume(self.game.volume_music)
-                    #self.Game.save_settings.save()
+                    # self.Game.save_settings.save()
             if self.title == 'volume effects':
                 if self.game.volume_effects > 0 and self.game.volume_pin2_w > 0:
                     self.game.accept_setting.play()
@@ -515,7 +414,7 @@ class OtherSettings(Menu):
                     self.game.paper_sound_var1.set_volume(self.game.volume_effects)
                     self.game.paper_sound_var2.set_volume(self.game.volume_effects)
                     self.game.paper_sound_var3.set_volume(self.game.volume_effects)
-                    #self.Game.save_settings.save()
+                    # self.Game.save_settings.save()
         if self.game.arrow_right:
             if self.title == 'volume music':
                 if self.game.volume_music < 1 and not self.game.volume_music > 1:
@@ -537,7 +436,7 @@ class OtherSettings(Menu):
                     self.game.paper_sound_var1.set_volume(self.game.volume_effects)
                     self.game.paper_sound_var2.set_volume(self.game.volume_effects)
                     self.game.paper_sound_var3.set_volume(self.game.volume_effects)
-                    #self.Game.save_settings.save()
+                    # self.Game.save_settings.save()
         if self.game.esc_b:
             self.game.back_menu_effect.play()
             self.game.save_settings.save()
@@ -566,27 +465,15 @@ class RecordPage(Menu):
             if self.game.language == 'en':
                 self.game.draw_text('records', self.game.font_size_Upper, self.label_rules_x, self.label_rules_y)
                 self.game.draw_text(('1 ' + f'{self.game.record}'), self.game.font_size, self.middle_w,
-                                  self.middle_h - 150)
+                                    self.middle_h - 150)
                 self.game.draw_text(('2 ' + f'{self.game.record2}'), self.game.font_size, self.middle_w,
-                                  self.middle_h - 100)
+                                    self.middle_h - 100)
                 self.game.draw_text(('3 ' + f'{self.game.record3}'), self.game.font_size, self.middle_w,
-                                  self.middle_h - 50)
+                                    self.middle_h - 50)
                 self.game.draw_text(('4 ' + f'{self.game.record4}'), self.game.font_size, self.middle_w, self.middle_h)
                 self.game.draw_text(('5 ' + f'{self.game.record5}'), self.game.font_size, self.middle_w,
-                                  self.middle_h + 50)
+                                    self.middle_h + 50)
                 self.game.draw_text('back', self.game.font_size, self.middle_w, self.middle_h + 100)
-            else:
-                self.game.draw_text('рекорды', self.game.font_size_Upper, self.label_rules_x, self.label_rules_y)
-                self.game.draw_text(('1 ' + f'{self.game.record}'), self.game.font_size, self.middle_w,
-                                  self.middle_h - 150)
-                self.game.draw_text(('2 ' + f'{self.game.record2}'), self.game.font_size, self.middle_w,
-                                  self.middle_h - 100)
-                self.game.draw_text(('3 ' + f'{self.game.record3}'), self.game.font_size, self.middle_w,
-                                  self.middle_h - 50)
-                self.game.draw_text(('4 ' + f'{self.game.record4}'), self.game.font_size, self.middle_w, self.middle_h)
-                self.game.draw_text(('5 ' + f'{self.game.record5}'), self.game.font_size, self.middle_w,
-                                  self.middle_h + 50)
-                self.game.draw_text('назад', self.game.font_size, self.middle_w, self.middle_h + 100)
             self.game.display.blit(self.i_back_active, (self.middle_w - 100, self.middle_h + 70))
             self.go_cursor()
             self.b_screen()
@@ -645,14 +532,6 @@ class MusicPage(Menu):
                 self.game.draw_text("theme 3", self.game.font_size, self.middle_w, self.middle_h + 50)
                 self.game.draw_text("off * on music", self.game.font_size, self.middle_w, self.middle_h + 100)
                 self.game.draw_text("back", self.game.font_size, self.middle_w, self.middle_h + 150)
-            else:
-                self.game.draw_text("Музыка", self.game.font_size_Upper, self.label_rules_x, self.label_rules_y)
-                self.game.draw_text("Основная", self.game.font_size, self.middle_w, self.middle_h - 100)
-                self.game.draw_text("тема 1", self.game.font_size, self.middle_w, self.middle_h - 50)
-                self.game.draw_text("тема 2", self.game.font_size, self.middle_w, self.middle_h)
-                self.game.draw_text("тема 3", self.game.font_size, self.middle_w, self.middle_h + 50)
-                self.game.draw_text("вкл * выкл", self.game.font_size, self.middle_w, self.middle_h + 100)
-                self.game.draw_text("назад", self.game.font_size, self.middle_w, self.middle_h + 150)
             if not self.title == 'back':
                 self.game.display.blit(self.back_i, (self.middle_w - 130, self.middle_h + 117))
             else:
@@ -806,44 +685,20 @@ class Rules(Menu):
                     "thereby making words At the beginning of the Game each player receives 7 random letters",
                     self.game.font_size, self.middle_w, self.middle_h - 300)
                 self.game.draw_text("( there are 104 in total in the Game 131 in Scrabble )",
-                                  self.game.font_size, self.middle_w, self.middle_h - 250)
+                                    self.game.font_size, self.middle_w, self.middle_h - 250)
                 self.game.draw_text("Through the central cell of the playing field the first word is laid out"
-                                  " horizontally or vertically", self.game.font_size, self.middle_w,
-                                  self.middle_h - 200)
+                                    " horizontally or vertically", self.game.font_size, self.middle_w,
+                                    self.middle_h - 200)
                 self.game.draw_text("then the next player can add the word ( to the intersection ) from their letters",
-                                  self.game.font_size, self.middle_w, self.middle_h - 150)
+                                    self.game.font_size, self.middle_w, self.middle_h - 150)
                 self.game.draw_text("Words are laid out either from left to right or from top to bottom",
-                                  self.game.font_size, self.middle_w, self.middle_h - 100)
+                                    self.game.font_size, self.middle_w, self.middle_h - 100)
                 self.game.draw_text(
                     "Each player aims to win the Game by creating more words based on the available letter "
                     "tiles to score more points",
                     self.game.font_size, self.middle_w, self.middle_h - 50)
                 self.game.draw_text("next", self.game.font_size, self.middle_w + 700, self.middle_h + 350)
                 self.game.draw_text("go menu", self.game.font_size, self.middle_w - 700, self.middle_h + 350)
-            else:
-                self.game.draw_text("Правила", self.game.font_size_Upper, self.middle_w, self.middle_h - 450)
-                self.game.draw_text(
-                    "Игровое поле состоит из 15 х 15, то есть 225 квадратов, на которые участники игры "
-                    "выкладывают буквы ",
-                    self.game.font_size, self.middle_w, self.middle_h - 350)
-                self.game.draw_text(
-                    "составляя слова В начале игры каждый игрок получает по 7 случайных букв",
-                    self.game.font_size, self.middle_w, self.middle_h - 300)
-                self.game.draw_text("( всего в игре 100 букв )",
-                                  self.game.font_size, self.middle_w, self.middle_h - 250)
-                self.game.draw_text("Через центральную ячейку игрового поля выкладывается первое слово"
-                                  " горизонтально или вертикально", self.game.font_size, self.middle_w,
-                                  self.middle_h - 200)
-                self.game.draw_text("Следующий игрок может добавить слово (к пересечению) из своих букв",
-                                  self.game.font_size, self.middle_w, self.middle_h - 150)
-                self.game.draw_text("Words are laid out either from left to right or from top to bottom",
-                                  self.game.font_size, self.middle_w, self.middle_h - 100)
-                self.game.draw_text(
-                    "Каждый игрок стремится выиграть игру, создавая больше слов на основе доступной буквы. "
-                    "чтобы набрать больше очков",
-                    self.game.font_size, self.middle_w, self.middle_h - 50)
-                self.game.draw_text("далее", self.game.font_size, self.middle_w + 700, self.middle_h + 350)
-                self.game.draw_text("в меню", self.game.font_size, self.middle_w - 700, self.middle_h + 350)
             if self.title != 'go menu':
                 self.game.display.blit(self.up_menu, (self.middle_w - 825, self.middle_h + 300))
             else:
@@ -908,46 +763,26 @@ class RulesPage2(Menu):
             self.game.display.fill(self.game.black)
             if self.game.language == 'en':
                 self.game.draw_text("Glossary", self.game.font_size_Upper, self.middle_w, self.middle_h - 450)
-                self.game.draw_text("It is allowed to use all the words given in the standard dictionary of the language "
-                                  "with the exception of *", self.game.font_size, self.middle_w, self.middle_h - 400)
+                self.game.draw_text(
+                    "It is allowed to use all the words given in the standard dictionary of the language "
+                    "with the exception of *", self.game.font_size, self.middle_w, self.middle_h - 400)
                 self.game.draw_text("words that are written with capital letters",
-                                  self.game.font_size, self.middle_w - 335, self.middle_h - 350)
+                                    self.game.font_size, self.middle_w - 335, self.middle_h - 350)
                 self.game.draw_text("abbreviation", self.game.font_size, self.middle_w - 595, self.middle_h - 300)
                 self.game.draw_text("words that are written with an apostrophe",
-                                  self.game.font_size, self.middle_w - 350, self.middle_h - 250)
+                                    self.game.font_size, self.middle_w - 350, self.middle_h - 250)
                 self.game.draw_text("words that are written with a hyphen",
-                                  self.game.font_size, self.middle_w - 394, self.middle_h - 200)
+                                    self.game.font_size, self.middle_w - 394, self.middle_h - 200)
                 self.game.draw_text("If a word does not have a nominative case or a singular number it is allowed to "
-                                  "use this word in any case or number",
-                                  self.game.font_size, self.middle_w, self.middle_h - 150)
+                                    "use this word in any case or number",
+                                    self.game.font_size, self.middle_w, self.middle_h - 150)
                 self.game.draw_text("Do not use a dictionary to look up words",
-                                  self.game.font_size, self.middle_w - 530, self.middle_h - 50)
+                                    self.game.font_size, self.middle_w - 530, self.middle_h - 50)
                 self.game.draw_text("Dictionary is allowed only in the case of checking the existence of an "
-                                  "already composed word", self.game.font_size, self.middle_w - 100, self.middle_h)
+                                    "already composed word", self.game.font_size, self.middle_w - 100, self.middle_h)
                 self.game.draw_text("back", self.game.font_size, self.middle_w - 700, self.middle_h + 350)
                 self.game.draw_text("go menu", self.game.font_size, self.middle_w, self.middle_h + 350)
                 self.game.draw_text("next", self.game.font_size, self.middle_w + 700, self.middle_h + 350)
-            else:
-                self.game.draw_text("Глоссарий", self.game.font_size_Upper, self.middle_w, self.middle_h - 450)
-                self.game.draw_text("Разрешается использовать все слова, приведенные в словаре "
-                                  "за исключением *", self.game.font_size, self.middle_w, self.middle_h - 400)
-                self.game.draw_text("слова которые пишутся с большой буквы",
-                                  self.game.font_size, self.middle_w - 335, self.middle_h - 350)
-                self.game.draw_text("аббревиатуры", self.game.font_size, self.middle_w - 595, self.middle_h - 300)
-                self.game.draw_text("слова, которые пишутся с апострофом",
-                                  self.game.font_size, self.middle_w - 350, self.middle_h - 250)
-                self.game.draw_text("слова которые пишутся через дефис",
-                                  self.game.font_size, self.middle_w - 394, self.middle_h - 200)
-                self.game.draw_text("Если слово не имеет именительного падежа или единственного числа, то допускается "
-                                  "используйте это слово в любом падеже или числе",
-                                  self.game.font_size, self.middle_w, self.middle_h - 150)
-                self.game.draw_text("Не используйте словарь для поиска слов",
-                                  self.game.font_size, self.middle_w - 530, self.middle_h - 50)
-                self.game.draw_text("Словарь допускается только в случае проверки существования "
-                                  "уже составленное слово", self.game.font_size, self.middle_w - 100, self.middle_h)
-                self.game.draw_text("назад", self.game.font_size, self.middle_w - 700, self.middle_h + 350)
-                self.game.draw_text("в меню", self.game.font_size, self.middle_w, self.middle_h + 350)
-                self.game.draw_text("далее", self.game.font_size, self.middle_w + 700, self.middle_h + 350)
             if self.title != 'go menu':
                 self.game.display.blit(self.up_menu, (self.middle_w - 125, self.middle_h + 300))
             else:
@@ -1025,61 +860,32 @@ class RulesPage3(Menu):
             if self.game.language == 'en':
                 self.game.draw_text("Game process", self.game.font_size_Upper, self.middle_w, self.middle_h - 450)
                 self.game.draw_text("* At the beginning of the Game everyone is given 7 tiles "
-                                  "Only one word is allowed per turn",
-                                  self.game.font_size, self.middle_w - 100, self.middle_h - 400)
+                                    "Only one word is allowed per turn",
+                                    self.game.font_size, self.middle_w - 100, self.middle_h - 400)
                 self.game.draw_text("Each new word must touch or have a common letter ( or letters ) "
-                                  "with previously composed words", self.game.font_size, self.middle_w - 80,
-                                  self.middle_h - 350)
+                                    "with previously composed words", self.game.font_size, self.middle_w - 80,
+                                    self.middle_h - 350)
                 self.game.draw_text("Words should be read from left to right ( horizontally ) and from "
-                                  "top to bottom ( vertically )",
-                                  self.game.font_size, self.middle_w - 117, self.middle_h - 300)
+                                    "top to bottom ( vertically )",
+                                    self.game.font_size, self.middle_w - 117, self.middle_h - 300)
                 self.game.draw_text("* The first composed word must go through the central cell",
-                                  self.game.font_size, self.middle_w - 410, self.middle_h - 200)
+                                    self.game.font_size, self.middle_w - 410, self.middle_h - 200)
                 self.game.draw_text("* If the player does not want or cannot make a single word he has the right "
-                                  "to change any number of his letters", self.game.font_size, self.middle_w,
-                                  self.middle_h - 100)
+                                    "to change any number of his letters", self.game.font_size, self.middle_w,
+                                    self.middle_h - 100)
                 self.game.draw_text("* Any sequence of letters horizontally and vertically must be a word",
-                                  self.game.font_size, self.middle_w - 335, self.middle_h)
+                                    self.game.font_size, self.middle_w - 335, self.middle_h)
                 self.game.draw_text("* After each move you need to get new letters up to seven",
-                                  self.game.font_size, self.middle_w - 430, self.middle_h + 100)
+                                    self.game.font_size, self.middle_w - 430, self.middle_h + 100)
                 self.game.draw_text("* If a player has used all seven tiles during a turn then an "
-                                  "additional 50 points are awarded to him",
-                                  self.game.font_size, self.middle_w - 105, self.middle_h + 200)
+                                    "additional 50 points are awarded to him",
+                                    self.game.font_size, self.middle_w - 105, self.middle_h + 200)
                 self.game.draw_text("* The Game ends if you run out of chips in your hand and there are no "
-                                  "more chips to draw",
-                                  self.game.font_size, self.middle_w - 200, self.middle_h + 270)
+                                    "more chips to draw",
+                                    self.game.font_size, self.middle_w - 200, self.middle_h + 270)
                 self.game.draw_text("back", self.game.font_size, self.middle_w - 700, self.middle_h + 350)
                 self.game.draw_text("go menu", self.game.font_size, self.middle_w, self.middle_h + 350)
                 self.game.draw_text("next", self.game.font_size, self.middle_w + 700, self.middle_h + 350)
-            else:
-                self.game.draw_text("Игровой процесс", self.game.font_size_Upper, self.middle_w, self.middle_h - 450)
-                self.game.draw_text("* В начале игры каждому дается по 7 букв "
-                                  "допускается составить только одно слово за ход",
-                                  self.game.font_size, self.middle_w - 100, self.middle_h - 400)
-                self.game.draw_text("Каждое новое слово должно касаться или иметь общую букву (или буквы) "
-                                  "с ранее составленными словами", self.game.font_size, self.middle_w - 80,
-                                  self.middle_h - 350)
-                self.game.draw_text("Слова следует читать слева направо (по горизонтали) и с "
-                                  "сверху вниз (по вертикали)",
-                                  self.game.font_size, self.middle_w - 117, self.middle_h - 300)
-                self.game.draw_text("* Первое составленное слово должно пройти через центральную ячейку",
-                                  self.game.font_size, self.middle_w - 410, self.middle_h - 200)
-                self.game.draw_text("* Если игрок не может составить ни одного слова, он имеет право "
-                                  "добавить себе буквы", self.game.font_size, self.middle_w,
-                                  self.middle_h - 100)
-                self.game.draw_text("* Любая последовательность букв по горизонтали и вертикали должна быть словом",
-                                  self.game.font_size, self.middle_w - 335, self.middle_h)
-                self.game.draw_text("* После каждого хода нужно пополнять запас новыми буквами ( до 7 )",
-                                  self.game.font_size, self.middle_w - 430, self.middle_h + 100)
-                self.game.draw_text("* * Если игрок использовал все 7 букв за ход то "
-                                  "ему начисляются дополнительные 50 баллов",
-                                  self.game.font_size, self.middle_w - 105, self.middle_h + 200)
-                self.game.draw_text("* Игра заканчивается, если у вас в руке закончились буквы и нет  "
-                                  "больше дополнительных для розыгрыша",
-                                  self.game.font_size, self.middle_w - 200, self.middle_h + 270)
-                self.game.draw_text("назад", self.game.font_size, self.middle_w - 700, self.middle_h + 350)
-                self.game.draw_text("в меню", self.game.font_size, self.middle_w, self.middle_h + 350)
-                self.game.draw_text("далее", self.game.font_size, self.middle_w + 700, self.middle_h + 350)
             if self.title != 'go menu':
                 self.game.display.blit(self.up_menu, (self.middle_w - 125, self.middle_h + 300))
             else:
@@ -1157,15 +963,11 @@ class RulesPage4(Menu):
             self.game.display.fill(self.game.black)
             self.game.display.blit(self.letters, (self.middle_w - 300, self.middle_h - 400))
             if self.game.language == 'en':
-                self.game.draw_text("Chip distribution and letter values", self.game.font_size_Upper, self.middle_w, self.middle_h - 400)
+                self.game.draw_text("Chip distribution and letter values", self.game.font_size_Upper, self.middle_w,
+                                    self.middle_h - 400)
                 self.game.draw_text("go menu", self.game.font_size, self.middle_w, self.middle_h + 350)
                 self.game.draw_text("next", self.game.font_size, self.middle_w + 700, self.middle_h + 350)
                 self.game.draw_text("back", self.game.font_size, self.middle_w - 700, self.middle_h + 350)
-            else:
-                self.game.draw_text("Количество и цена букв", self.game.font_size_Upper, self.middle_w, self.middle_h - 400)
-                self.game.draw_text("в меню", self.game.font_size, self.middle_w, self.middle_h + 350)
-                self.game.draw_text("далее", self.game.font_size, self.middle_w + 700, self.middle_h + 350)
-                self.game.draw_text("назад", self.game.font_size, self.middle_w - 700, self.middle_h + 350)
             if self.title != 'go menu':
                 self.game.display.blit(self.up_menu, (self.middle_w - 125, self.middle_h + 300))
             else:
@@ -1242,53 +1044,28 @@ class RulesPage5(Menu):
             self.game.display.fill(self.game.black)
             if self.game.language == 'en':
                 self.game.draw_text("Scoring and bonuses", self.game.font_size_Upper, self.label_rules_x,
-                                  self.label_rules_y)
+                                    self.label_rules_y)
                 self.game.draw_text("Each letter is assigned a number of points from 1 to 10 Some squares on the "
-                                  "board are painted in different colors ", self.game.font_size, self.middle_w,
-                                  self.middle_h - 350)
+                                    "board are painted in different colors ", self.game.font_size, self.middle_w,
+                                    self.middle_h - 350)
                 self.game.draw_text("The number of points a player receives for a laid out word is calculated as "
-                                  "follows", self.game.font_size, self.middle_w - 225, self.middle_h - 300)
+                                    "follows", self.game.font_size, self.middle_w - 225, self.middle_h - 300)
                 self.game.draw_text("* if the box under the letter is empty the number of points written on the letter "
-                                  "is added", self.game.font_size, self.middle_w - 173, self.middle_h - 200)
+                                    "is added", self.game.font_size, self.middle_w - 173, self.middle_h - 200)
                 self.game.draw_text('* if the square is blue the number of points of the letter is multiplied by 2',
-                                  self.game.font_size,
-                                  self.middle_w - 290, self.middle_h - 150)
+                                    self.game.font_size,
+                                    self.middle_w - 290, self.middle_h - 150)
                 self.game.draw_text('* if the square is pink the score of the whole word is multiplied by 2',
-                                  self.game.font_size,
-                                  self.middle_w - 343, self.middle_h - 100)
+                                    self.game.font_size,
+                                    self.middle_w - 343, self.middle_h - 100)
                 self.game.draw_text('* if the square is blue the score of the letter is multiplied by 3',
-                                  self.game.font_size,
-                                  self.middle_w - 380, self.middle_h - 50)
+                                    self.game.font_size,
+                                    self.middle_w - 380, self.middle_h - 50)
                 self.game.draw_text('* if the square is red the score of the whole word is multiplied by 3',
-                                  self.game.font_size,
-                                  self.middle_w - 350, self.middle_h)
+                                    self.game.font_size,
+                                    self.middle_w - 350, self.middle_h)
                 self.game.draw_text("back", self.game.font_size, self.middle_w - 700, self.middle_h + 350)
                 self.game.draw_text("go menu", self.game.font_size, self.middle_b_x, self.middle_b_y)
-            else:
-                self.game.draw_text("Подсчет очков и бонусов", self.game.font_size_Upper, self.label_rules_x,
-                                  self.label_rules_y)
-                self.game.draw_text("Каждой букве присваивается количество баллов от 1 до 10. Некоторые ячейки на "
-                                  "доске окрашены в разные цвета ", self.game.font_size, self.middle_w,
-                                  self.middle_h - 350)
-                self.game.draw_text("Количество очков, получаемых игроком за выложенное слово, рассчитывается так *",
-                                  self.game.font_size, self.middle_w - 225, self.middle_h - 300)
-                self.game.draw_text(
-                    "* Если поле под буквой пустое то количество начисляемых очков считается за сумму букв",
-                    self.game.font_size, self.middle_w - 173, self.middle_h - 200)
-                self.game.draw_text('* Eсли ячейка голубая то количество баллов за буквы умножается на 2',
-                                  self.game.font_size,
-                                  self.middle_w - 290, self.middle_h - 150)
-                self.game.draw_text('* Если ячейка красная то количество баллов за всё слово умножается на 2',
-                                  self.game.font_size,
-                                  self.middle_w - 343, self.middle_h - 100)
-                self.game.draw_text('* Eсли ячейка синяя то количество баллов за букву умножается на 3',
-                                  self.game.font_size,
-                                  self.middle_w - 380, self.middle_h - 50)
-                self.game.draw_text('* Если ячейка красная то количество баллов за слово умножается на 3',
-                                  self.game.font_size,
-                                  self.middle_w - 350, self.middle_h)
-                self.game.draw_text("назад", self.game.font_size, self.middle_w - 700, self.middle_h + 350)
-                self.game.draw_text("в меню", self.game.font_size, self.middle_b_x, self.middle_b_y)
             if self.title != 'go menu':
                 self.game.display.blit(self.up_menu, (self.middle_w - 125, self.middle_h + 300))
             else:
